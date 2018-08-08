@@ -16,7 +16,7 @@ class UtilityBarcodeReader {
             ServiceRegex("bishkek_vodokanal", """^02(\d{8})\d(\d{4})(\d{2})\d{3}$"""),
             ServiceRegex("bishkekgas", """^03(\d{9})\d{3}(\d{6})(\d{2})\d{6}$"""),
             ServiceRegex("komtranskom", """^95(\d{8})(\d{5})(\d{2})\d$"""),
-            ServiceRegex("severelectro", """^(\d{9})\d{2}(\d{5})(\d{2})(\d{4})(\d{2})\d{8}$""")
+            ServiceRegex("severelectro", """^(\d{9})\d{2}(\d{5})(\d{2})(\d{4})(\d{2})\d{8,12}$""")
     )
 
     fun detect(code: String): BarcodeReadResult?{
