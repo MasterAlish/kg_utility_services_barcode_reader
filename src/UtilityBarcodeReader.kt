@@ -26,12 +26,12 @@ class UtilityBarcodeReader {
                 val result = pattern.find(code)
                 if(result != null) {
                     if (result.groupValues.size == 4) {
-                        val account = result.groupValues[1]
+                        val account = formatAccount(service, result.groupValues[1])
                         var sum = result.groupValues[2].toDouble()
                         sum += result.groupValues[3].toDouble()/100.0
                         return BarcodeReadResult(service, account, sum)
                     }else if(result.groupValues.size == 6){
-                        val account = result.groupValues[1]
+                        val account = formatAccount(service, result.groupValues[1])
                         var sum = result.groupValues[2].toDouble()
                         sum += result.groupValues[3].toDouble()/100.0
                         sum += result.groupValues[4].toDouble()
@@ -42,5 +42,16 @@ class UtilityBarcodeReader {
             }
         }
         return null
+    }
+
+    private fun formatAccount(service: String, raw_account: String): String {
+        val len = raw_account.length
+        return when(service){
+            "komtranskom",
+            "bishkekteploset",
+            "bishkek_vodokanal",
+            "tazalyk" -> raw_account.substring(0, len - 1) + "-" + raw_account.substring(len - 1)
+            else -> raw_account
+        }
     }
 }

@@ -9,7 +9,7 @@ class TestBarcodeReader: junit.framework.TestCase(){
         val data = "10010565140000142008"
         val result = barcodeReader.detect(data)!!
         assertEquals("bishkekteploset", result.service)
-        assertEquals("01056514", result.account)
+        assertEquals("0105651-4", result.account)
         assertEquals(142.0, result.sum)
     }
 
@@ -33,7 +33,7 @@ class TestBarcodeReader: junit.framework.TestCase(){
         val data = "145004492000082508"
         val result = barcodeReader.detect(data)!!
         assertEquals("tazalyk", result.service)
-        assertEquals("50044920", result.account)
+        assertEquals("5004492-0", result.account)
         assertEquals(82.5, result.sum)
     }
 
@@ -49,7 +49,7 @@ class TestBarcodeReader: junit.framework.TestCase(){
         val data = "02010565141008200067"
         val result = barcodeReader.detect(data)!!
         assertEquals("bishkek_vodokanal", result.service)
-        assertEquals("01056514", result.account)
+        assertEquals("0105651-4", result.account)
         assertEquals(82.0, result.sum)
     }
 
@@ -65,7 +65,7 @@ class TestBarcodeReader: junit.framework.TestCase(){
         val data = "951511340500045009"
         val result = barcodeReader.detect(data)!!
         assertEquals("komtranskom", result.service)
-        assertEquals("15113405", result.account)
+        assertEquals("1511340-5", result.account)
         assertEquals(45.0, result.sum)
     }
 
