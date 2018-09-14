@@ -14,6 +14,15 @@ class TestBarcodeReader: junit.framework.TestCase(){
         assertEquals(142.0, results[0].sum)
     }
 
+    fun testBarcodeDataIsForBishkekVodokanal2(){
+        val data = "048639587810065002"
+        val results = barcodeReader.detect(data)
+        assertEquals(results.size, 2)
+        assertEquals("bishkek_vodokanal", results[0].service)
+        assertEquals("8639587-8", results[0].account)
+        assertEquals(65.0, results[0].sum)
+    }
+
     fun testBarcodeDataIsForCentObclujivaniyaDomofonov(){
         val data = "65101581006300"
         val results = barcodeReader.detect(data)
