@@ -14,7 +14,7 @@ class UtilityBarcodeReader {
             ServiceRegex("bishkekteploset", """^10(\d{8})(\d{7})(\d{2})\d$"""),
             ServiceRegex("centr_obslujivaniya_domofonov", """^65(\d{6})(\d{4})(\d{2})$"""),
             ServiceRegex("bishkek_gor_lift", """^93\d(\d{7})\d{5}(\d{5})(\d{2})$"""),
-            ServiceRegex("bishkek_vodokanal", """^0[24](\d{8})\d(\d{4})(\d{2})\d{1,3}$"""),
+            ServiceRegex("bishkek_vodocanal", """^0[24](\d{8})\d(\d{4})(\d{2})\d{1,3}$"""),
             ServiceRegex("tazalyk", """^[01][349](\d{8})(\d{5})(\d{2})\d$"""),
             ServiceRegex("bishkekgas", """^03(\d{9})\d{3}(\d{6})(\d{2})\d{6}$"""),
             ServiceRegex("oshgas", """^03(\d{9})\d{3}(\d{6})(\d{2})\d{6}$"""),
@@ -58,7 +58,7 @@ class UtilityBarcodeReader {
         return when(service){
             "komtranskom",
             "bishkekteploset",
-            "bishkek_vodokanal",
+            "bishkek_vodocanal",
             "tazalyk" -> raw_account.substring(0, len - 1) + "-" + raw_account.substring(len - 1)
             else -> raw_account
         }
