@@ -18,11 +18,10 @@ class UtilityBarcodeReader {
             ServiceRegex("tazalyk", """^[01][349](\d{8})(\d{5})(\d{2})\d$"""),
             ServiceRegex("bishkekgas", """^03(\d{9})\d{3}(\d{6})(\d{2})\d{6}$"""),
             ServiceRegex("oshgas", """^03(\d{9})\d{3}(\d{6})(\d{2})\d{6}$"""),
-            ServiceRegex("chuigas", """^03(\d{9})\d{3}(\d{6})(\d{2})\d{6}$"""),
             ServiceRegex("batkengas", """^03(\d{9})\d{3}(\d{6})(\d{2})\d{6}$"""),
             ServiceRegex("jalalabadgas", """^03(\d{9})\d{3}(\d{6})(\d{2})\d{6}$"""),
             ServiceRegex("komtranskom", """^95(\d{8})(\d{5})(\d{2})\d$"""),
-            ServiceRegex("severelectro", """^(\d{9})\d{2}(\d{5})(\d{2})(\d{4})(\d{2})\d{8,12}$"""),
+            ServiceRegex("severelectro_bishkek", """^(\d{9})\d{2}(\d{5})(\d{2})(\d{4})(\d{2})\d{8,12}$"""),
             ServiceRegex("severelectro_talas", """^(\d{9})\d{2}(\d{5})(\d{2})(\d{4})(\d{2})\d{8,12}$"""),
             ServiceRegex("severelectro_chui", """^(\d{9})\d{2}(\d{5})(\d{2})(\d{4})(\d{2})\d{8,12}$"""),
             ServiceRegex("centralnaya_slujba_domofonov", """^95(\d{7})(\d{4})(\d{2})$""")
