@@ -103,6 +103,15 @@ class TestBarcodeReader: junit.framework.TestCase(){
         assertEquals(45.0, results[0].sum)
     }
 
+    fun testBarcodeDataIsForRiomAuto(){
+        val data = "3170119101445898"
+        val results = barcodeReader.detect(data)
+        assertEquals(results.size, 1)
+        assertEquals("riom_auto", results[0].service)
+        assertEquals("3170119101445898", results[0].account)
+        assertEquals(0.0, results[0].sum)
+    }
+
     fun testBarcodeReaderReturnsNullForUnknownFormat(){
         val data = "123123123123123"
         val result = barcodeReader.detect(data)

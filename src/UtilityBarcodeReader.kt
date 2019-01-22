@@ -24,27 +24,32 @@ class UtilityBarcodeReader {
             ServiceRegex("severelectro_bishkek", """^(\d{9})\d{2}(\d{5})(\d{2})(\d{4})(\d{2})\d{8,12}$"""),
             ServiceRegex("severelectro_talas", """^(\d{9})\d{2}(\d{5})(\d{2})(\d{4})(\d{2})\d{8,12}$"""),
             ServiceRegex("severelectro_chui", """^(\d{9})\d{2}(\d{5})(\d{2})(\d{4})(\d{2})\d{8,12}$"""),
-            ServiceRegex("centralnaya_slujba_domofonov", """^95(\d{7})(\d{4})(\d{2})$""")
+            ServiceRegex("centralnaya_slujba_domofonov", """^95(\d{7})(\d{4})(\d{2})$"""),
+            ServiceRegex("riom_auto", """^(\d{16})$""")
     )
 
-    fun detect(code: String): List<BarcodeReadResult>{
+    fun detect(code: String): List<BarcodeReadResult> {
         val results = ArrayList<BarcodeReadResult>()
-        for ((service, regex) in services){
+        for ((service, regex) in services) {
             val pattern = Regex(regex)
-            if(pattern.matches(code)){
+            if (pattern.matches(code)) {
                 val result = pattern.find(code)
-                if(result != null) {
-                    if (result.groupValues.size == 4) {
+                if (result != null) {
+                    if (result.groupValues.size == 2) {
                         val account = formatAccount(service, result.groupValues[1])
-                        var sum = result.groupValues[2].toDouble()
-                        sum += result.groupValues[3].toDouble()/100.0
+                        val sum = 0.0
                         results.add(BarcodeReadResult(service, account, sum))
-                    }else if(result.groupValues.size == 6){
+                    } else if (result.groupValues.size == 4) {
                         val account = formatAccount(service, result.groupValues[1])
                         var sum = result.groupValues[2].toDouble()
-                        sum += result.groupValues[3].toDouble()/100.0
+                        sum += result.groupValues[3].toDouble() / 100.0
+                        results.add(BarcodeReadResult(service, account, sum))
+                    } else if (result.groupValues.size == 6) {
+                        val account = formatAccount(service, result.groupValues[1])
+                        var sum = result.groupValues[2].toDouble()
+                        sum += result.groupValues[3].toDouble() / 100.0
                         sum += result.groupValues[4].toDouble()
-                        sum += result.groupValues[5].toDouble()/100.0
+                        sum += result.groupValues[5].toDouble() / 100.0
                         results.add(BarcodeReadResult(service, account, sum))
                     }
                 }
@@ -55,7 +60,7 @@ class UtilityBarcodeReader {
 
     private fun formatAccount(service: String, raw_account: String): String {
         val len = raw_account.length
-        return when(service){
+        return when (service) {
             "komtranskom",
             "bishkekteploset",
             "bishkek_vodocanal",
